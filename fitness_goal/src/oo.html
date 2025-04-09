@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Goal Modal</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+</head>
+<body>
+    <div class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden" id="store">
+        <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
+            <h2 class="text-2xl font-bold text-black mb-6">Add New Goal</h2>
+            <form id="goalForm" class="space-y-4">
+                <div class="space-y-2">
+                    <label for="form-title" class="block text-sm font-medium text-black">Goal Title</label>
+                    <input
+                        type="text"
+                        name="title"
+                        id="form-title"
+                        class="w-full px-4 py-2 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+                        placeholder="e.g., Walk 10k steps"
+                    />
+                    <p class="text-red-500 text-sm mt-1 hidden" id="titleError"></p>
+                </div>
+                <div class="space-y-2">
+                    <label for="form-target" class="block text-sm font-medium text-black">Target Value</label>
+                    <input
+                        type="number"
+                        name="target"
+                        id="form-target"
+                        class="w-full px-4 py-2 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+                        placeholder="e.g., 10000"
+                    />
+                    <p class="text-red-500 text-sm mt-1 hidden" id="targetError"></p>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button
+                        type="submit"
+                        class="px-6 py-2 bg-black text-white rounded-lg hover:bg-opacity-90 transition-colors cursor-pointer flex-1"
+                    >
+                        Add Goal
+                    </button>
+                    <button
+                        type="button"
+                        onclick="document.getElementById('store').style.display = 'none'"
+                        class="px-6 py-2 border border-black text-black rounded-lg hover:bg-gray-100 transition-colors cursor-pointer flex-1"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('goalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would put your Store function logic
+            console.log('Form submitted');
+        });
+    </script>
+</body>
+</html>
