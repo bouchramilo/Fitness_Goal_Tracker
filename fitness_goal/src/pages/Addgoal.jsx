@@ -37,16 +37,20 @@ export default function AddGoal() {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.goalName.trim()) {
       newErrors.goalName = "Le nom de l'objectif est requis";
     }
-    
+
     if (!formData.category) {
       newErrors.category = "Veuillez sélectionner une catégorie";
     }
-    
-    if (!formData.goalTarget || isNaN(formData.goalTarget) || Number(formData.goalTarget) <= 0) {
+
+    if (
+      !formData.goalTarget ||
+      isNaN(formData.goalTarget) ||
+      Number(formData.goalTarget) <= 0
+    ) {
       newErrors.goalTarget = "Veuillez entrer une valeur valide";
     }
 
@@ -60,8 +64,7 @@ export default function AddGoal() {
       ...prev,
       [name]: value,
     }));
-    
-    // Effacer l'erreur quand l'utilisateur modifie le champ
+
     if (errors[name]) {
       setErrors((prev) => {
         const newErrors = { ...prev };
@@ -73,22 +76,20 @@ export default function AddGoal() {
 
   const saveGoalToLocalStorage = (goal) => {
     try {
-      // Récupérer les objectifs existants
-      const existingGoals = JSON.parse(localStorage.getItem("fitnessGoals")) || [];
-      
-      // Ajouter le nouvel objectif avec un ID unique et une date de création
+      const existingGoals =
+        JSON.parse(localStorage.getItem("fitnessGoals")) || [];
+
       const newGoal = {
         ...goal,
         id: Date.now().toString(),
         createdAt: new Date().toISOString(),
         progress: 0,
-        completed: false
+        completed: false,
       };
-      
-      // Mettre à jour et sauvegarder
+
       const updatedGoals = [...existingGoals, newGoal];
       localStorage.setItem("fitnessGoals", JSON.stringify(updatedGoals));
-      
+
       return true;
     } catch (error) {
       console.error("Erreur lors de la sauvegarde:", error);
@@ -99,7 +100,7 @@ export default function AddGoal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSuccessMessage("");
-    
+
     if (validateForm()) {
       const goalToSave = {
         name: formData.goalName,
@@ -108,20 +109,18 @@ export default function AddGoal() {
         unit: formData.unit,
         progress: 0,
       };
-      
+
       if (saveGoalToLocalStorage(goalToSave)) {
         setSuccessMessage("Objectif ajouté avec succès !");
-        // Réinitialiser le formulaire
         setFormData({
           goalName: "",
           category: "",
           goalTarget: "",
           unit: "steps",
         });
-        
-        // Rediriger après 2 secondes
+
         setTimeout(() => {
-          window.location.href = "/dashboard"; // Remplacez par votre route de liste d'objectifs
+          window.location.href = "/dashboard";
         }, 2000);
       } else {
         setErrors({ submit: "Une erreur est survenue lors de la sauvegarde" });
@@ -180,9 +179,9 @@ export default function AddGoal() {
                 error={errors.goalTarget}
               />
 
-              <FormActions 
-                onSave={handleSubmit} 
-                onCancel={() => window.history.back()} 
+              <FormActions
+                onSave={handleSubmit}
+                onCancel={() => window.history.back()}
               />
             </form>
           </div>

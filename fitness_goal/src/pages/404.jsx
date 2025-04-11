@@ -7,10 +7,10 @@ export default function Home() {
     <div className="bg-background min-h-screen">
       <Header />
       <main className="pt-20 pb-4">
-        <div class="container mx-auto px-4 text-center">
-          <div class="mb-8">
+        <div className="container mx-auto px-4 text-center">
+          <div className="mb-8">
             <svg
-              class="w-48 h-48 mx-auto text-primary"
+              className="w-48 h-48 mx-auto text-primary"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -24,21 +24,21 @@ export default function Home() {
             </svg>
           </div>
 
-          <h1 class="text-6xl font-bold text-text mb-4">404</h1>
-          <h2 class="text-2xl font-medium text-text/80 mb-6">
+          <h1 className="text-6xl font-bold text-text mb-4">404</h1>
+          <h2 className="text-2xl font-medium text-text/80 mb-6">
             Page non trouvée
           </h2>
-          <p class="text-text/60 mb-8 max-w-md mx-auto">
+          <p className="text-text/60 mb-8 max-w-md mx-auto">
             Désolé, la page que vous recherchez n'existe pas ou a été déplacée.
           </p>
 
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="/home"
-              class="bg-primary hover:bg-accent text-white font-medium px-8 py-3 rounded-xl transition duration-300 flex items-center"
+              className="bg-primary hover:bg-accent text-white font-medium px-8 py-3 rounded-xl transition duration-300 flex items-center"
             >
               <svg
-                class="w-5 h-5 mr-2"
+                className="w-5 h-5 mr-2"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -54,10 +54,10 @@ export default function Home() {
             </a>
             <a
               href="/dashboard"
-              class="bg-white hover:bg-gray-50 text-text font-medium px-8 py-3 rounded-xl transition duration-300 flex items-center border border-gray-200"
+              className="bg-white hover:bg-gray-50 text-text font-medium px-8 py-3 rounded-xl transition duration-300 flex items-center border border-gray-200"
             >
               <svg
-                class="w-5 h-5 mr-2"
+                className="w-5 h-5 mr-2"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -73,33 +73,33 @@ export default function Home() {
             </a>
           </div>
 
-          <div class="mt-12 text-text/60">
-            <p class="mb-4">Vous cherchez peut-être :</p>
-            <div class="flex flex-wrap justify-center gap-3">
+          <div className="mt-12 text-text/60">
+            <p className="mb-4">Vous cherchez peut-être :</p>
+            <div className="flex flex-wrap justify-center gap-3">
               <a
                 href="/dashboard"
-                class="hover:text-primary transition duration-300"
+                className="hover:text-primary transition duration-300"
               >
                 Tableau de bord
               </a>
-              <span class="text-gray-300">•</span>
+              <span className="text-gray-300">•</span>
               <a
                 href="/goals"
-                class="hover:text-primary transition duration-300"
+                className="hover:text-primary transition duration-300"
               >
                 Mes objectifs
               </a>
-              <span class="text-gray-300">•</span>
+              <span className="text-gray-300">•</span>
               <a
                 href="/performance"
-                class="hover:text-primary transition duration-300"
+                className="hover:text-primary transition duration-300"
               >
                 Performances
               </a>
-              <span class="text-gray-300">•</span>
+              <span className="text-gray-300">•</span>
               <a
                 href="/profile"
-                class="hover:text-primary transition duration-300"
+                className="hover:text-primary transition duration-300"
               >
                 Profil
               </a>

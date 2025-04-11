@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import GoalItem from './GoalItem';
 
 export default function ActiveGoalsSection({ goals, onAddGoal, onGoalUpdate }) {
@@ -32,7 +32,7 @@ export default function ActiveGoalsSection({ goals, onAddGoal, onGoalUpdate }) {
         </button>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-4 grid grid-cols-1 lg:grid-cols-2">
         {goals.length > 0 ? (
           goals.map((goal) => (
             <GoalItem

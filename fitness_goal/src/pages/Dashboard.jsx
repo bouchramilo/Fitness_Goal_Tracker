@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import WelcomeBanner from "../components/dashboard/WelcomeBanner";
 import StatsCard from "../components/dashboard/StatsCard";
 import ActiveGoalsSection from "../components/dashboard/ActiveGoalsSection";
-import RecentActivitySection from "../components/dashboard/RecentActivitySection";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-// Icônes réutilisables
+// Icônes réutilisables *****************************************************************************************************
 const GoalIcon = (
   <svg
     className="w-6 h-6"
@@ -23,21 +22,6 @@ const GoalIcon = (
   </svg>
 );
 
-const CheckIcon = (
-  <svg
-    className="w-6 h-6"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M5 13l4 4L19 7"
-    />
-  </svg>
-);
 
 const ProgressIcon = (
   <svg
@@ -55,25 +39,10 @@ const ProgressIcon = (
   </svg>
 );
 
-const StreakIcon = (
-  <svg
-    className="w-6 h-6"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-    />
-  </svg>
-);
-
+// **************************************************************************************************************************
 export default function Dashboard() {
   const [goals, setGoals] = useState([]);
-  const [activities, setActivities] = useState([]);
+  // const [activities, setActivities] = useState([]);
   const [stats, setStats] = useState({
     activeGoals: 0,
     completedGoals: 0,
@@ -81,12 +50,13 @@ export default function Dashboard() {
     currentStreak: 0,
   });
 
-  // Charger les données depuis localStorage au montage
+  // Charger les données depuis localStorage au montage ******************************************************************
   useEffect(() => {
     loadGoals();
-    loadActivities();
+    // loadActivities();
   }, []);
 
+  // **************************************************************************************************************************
   const loadGoals = () => {
     try {
       const savedGoals = JSON.parse(localStorage.getItem("fitnessGoals")) || [];
@@ -97,46 +67,42 @@ export default function Dashboard() {
     }
   };
 
-  const loadActivities = () => {
-    // Ici vous pourriez charger depuis une API ou localStorage
-    const demoActivities = [
-      {
-        type: "success",
-        text: "Objectif '10 000 pas' atteint",
-        time: "Il y a 2 heures",
-      },
-      { type: "add", text: "Nouvel objectif créé", time: "Il y a 5 heures" },
-      { type: "reminder", text: "Rappel quotidien", time: "Il y a 1 jour" },
-    ];
-    setActivities(demoActivities);
-  };
+  // **************************************************************************************************************************
+  // const loadActivities = () => {
+  //   const demoActivities = [
+  //     {
+  //       type: "success",
+  //       text: "Objectif '10 000 pas' atteint",
+  //       time: "Il y a 2 heures",
+  //     },
+  //     { type: "add", text: "Nouvel objectif créé", time: "Il y a 5 heures" },
+  //     { type: "reminder", text: "Rappel quotidien", time: "Il y a 1 jour" },
+  //   ];
+  //   setActivities(demoActivities);
+  // };
 
+  // **************************************************************************************************************************
   const calculateStats = (goalsList) => {
-    const active = goalsList.filter((goal) => !goal.completed).length;
-    const completed = goalsList.filter((goal) => goal.completed).length;
-    const totalProgress = goalsList.reduce(
-      (sum, goal) => sum + (goal.progress || 0),
-      0
-    );
-    const average =
-      goalsList.length > 0 ? Math.round(totalProgress / goalsList.length) : 0;
-
-    // Calcul simplifié de la série (à adapter selon vos besoins)
-    const streak = goalsList.length > 0 ? 7 : 0; // Exemple basique
-
+    const active = goalsList.filter(goal => !goal.completed).length;
+    const completed = goalsList.filter(goal => goal.completed).length;
+    const totalProgress = goalsList.reduce((sum, goal) => sum + (goal.progress || 0), 0);
+    const average = goalsList.length > 0 ? Math.round(totalProgress / goalsList.length) : 0;
+    
     setStats({
       activeGoals: active,
       completedGoals: completed,
       averageProgress: average,
-      currentStreak: streak,
+      totalGoals: goalsList.length
     });
   };
 
+  // **************************************************************************************************************************
   const handleAddGoal = () => {
     // Redirection vers la page d'ajout
     window.location.href = "/create";
   };
 
+  // **************************************************************************************************************************
   const handleGoalUpdate = (goalId, updates) => {
     try {
       const updatedGoals = goals.map(goal => 
@@ -153,17 +119,13 @@ export default function Dashboard() {
     }
   };
 
+  // **************************************************************************************************************************
   const statsCards = [
     {
-      title: "Objectifs actifs",
-      value: stats.activeGoals,
+      title: "Nombre d'objectifs",
+      value: goals.length,
+      subValue: `${stats.activeGoals} actifs`,
       icon: GoalIcon,
-      color: "primary",
-    },
-    {
-      title: "Objectifs atteints",
-      value: stats.completedGoals,
-      icon: CheckIcon,
       color: "primary",
     },
     {
@@ -171,21 +133,19 @@ export default function Dashboard() {
       value: `${stats.averageProgress}%`,
       icon: ProgressIcon,
       color: "primary",
-    },
-    {
-      title: "Série actuelle",
-      value: `${stats.currentStreak} jours`,
-      icon: StreakIcon,
-      color: "primary",
-    },
+      progress: stats.averageProgress,
+    }
   ];
+
+  // **************************************************************************************************************************
+  // **************************************************************************************************************************
   return (
     <div className="bg-background min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow pt-20 pb-4 container mx-auto px-4">
-        <WelcomeBanner userName="Sarah" />
+        <WelcomeBanner userName="Bouchra" />
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {statsCards.map((stat, index) => (
             <StatsCard
               key={index}

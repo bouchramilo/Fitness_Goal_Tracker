@@ -1,20 +1,15 @@
-import React from 'react';
-import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import Signup from './Pages/Auth/SignUp';
-// import Login from './Pages/Auth/LogIn';
-import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
-import NotFound from './pages/404';
-import Addgoal from './pages/Addgoal';
-// import ProductShow from './Pages/Products/Show';
+import React from "react";
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import NotFound from "./pages/404";
+import Addgoal from "./pages/Addgoal";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} /> */}
         <Route path="/home" element={<Home />} />
         <Route path="/create" element={<Addgoal />} />
         <Route path="/dashboard" element={<Dashboard />} />
@@ -25,12 +20,3 @@ const App = () => {
 };
 
 export default App;
-
-
-
-
-
-
-
-
-
